@@ -26,14 +26,13 @@ jobs:
         id: updates
         run: |
           .\Updates.ps1
+
+      - name: Get Env
+        shell: pwsh
+        id: env
+        run: |
+          dir env:
+            
       
-      - name: Send Email With SendGrid
-        uses: licenseware/send-email-notification@v1
-        with:
-          from-email: devops.team.sdb@gmail.com
-          to-email: ${{ secrets.SENDGRID_TO }}
-          api-key: ${{ secrets.SENDGRID_TOKEN }}
-          subject: Updates for Apps
-          markdown-body: |
-            ${{ steps.updates.outputs.stdout }}
-          
+
+
