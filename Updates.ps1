@@ -37,5 +37,5 @@ function  Get-UpdateForSplunk{
     }
 }
 
-Get-UpdateForAnsible | Format-Table -auto >> $Env:GITHUB_OUTPUT
-Get-UpdateForSplunk | Format-Table -auto >> $Env:GITHUB_OUTPUT
+Get-UpdateForAnsible | Format-Table -auto | Out-File -FilePath $Env:GITHUB_ENV -Encoding utf8 -Append
+Get-UpdateForSplunk | Format-Table -auto | Out-File -FilePath $Env:GITHUB_ENV -Encoding utf8 -Append
