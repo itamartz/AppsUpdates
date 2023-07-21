@@ -71,8 +71,7 @@ jobs:
           api-key: ${{ secrets.SENDGRID_TOKEN }}
           subject: Updates for Apps
           markdown-body: |
-            Splunk - ${{ steps.splunk.outputs.stdout }}
-            ${{ steps.splunk.outputs.LatesSplunk }}
+            Splunk - stdout: ${{ steps.splunk.outputs.stdout }} - LatesSplunk: ${{ steps.splunk.outputs.LatesSplunk }}
 
 
 
