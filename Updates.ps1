@@ -37,5 +37,5 @@ function  Get-UpdateForSplunk{
     }
 }
 
-Get-UpdateForAnsible
-Get-UpdateForSplunk
+Get-UpdateForAnsible | Format-Table -auto
+Get-UpdateForSplunk | Format-Table -auto
