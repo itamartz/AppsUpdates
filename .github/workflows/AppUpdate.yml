@@ -35,6 +35,5 @@ jobs:
           api-key: ${{ secrets.SENDGRID_TOKEN }}
           subject: Updates for Apps
           markdown-body: |
-            "-----------------------------"
-            {{ steps.updates.outputs.stdout }}
+            ${{ steps.updates.outputs.stdout }}
           
