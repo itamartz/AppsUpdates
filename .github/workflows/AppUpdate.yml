@@ -76,7 +76,7 @@ jobs:
             ${{ steps.splunk.outputs.LatesSplunk }}
 
             ### LatesAnsible
-            ${{ steps.splunk.outputs.LatesAnsible }}
+            ${{ steps.ansible.outputs.LatesAnsible }}
           
 
 
