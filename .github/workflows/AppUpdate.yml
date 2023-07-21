@@ -20,3 +20,8 @@ jobs:
 
       - name: Run a one-line script
         run: dir
+
+      - name: Run Powershell Get Apps Updates Script
+        shell: pwsh
+        run: |
+          .\Updates.ps1
