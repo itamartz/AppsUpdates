@@ -54,7 +54,7 @@ jobs:
           }
 
           $LatesVersion = ($x64_filename -split '-')[1]
-          echo "::set-output name=LatesSplunk::$($LatesVersion)
+          echo "::set-output name=LatesSplunk::$($LatesVersion)"
           echo "LatesSplunk=$($LatesVersion)" >> $env:GITHUB_ENV
 
       - name: Get Env
