@@ -36,5 +36,5 @@ jobs:
           subject: Updates for Apps
           markdown-body: |
             "-----------------------------"
-            {{ steps.updates.outputs }}
+            {{ steps.updates.outputs.stdout }}
           
