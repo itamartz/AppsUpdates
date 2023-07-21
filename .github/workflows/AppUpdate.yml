@@ -23,5 +23,18 @@ jobs:
 
       - name: Run Powershell Get Apps Updates Script
         shell: pwsh
+        id: updates
         run: |
           .\Updates.ps1
+      
+      - name: Send Email With SendGrid
+        uses: licenseware/send-email-notification@v1
+        with:
+          from-email: devops.team.sdb@gmail.com
+          to-email: ${{ secrets.SENDGRID_TO }}
+          api-key: ${{ secrets.SENDGRID_TOKEN }}
+          subject: Updates for Apps
+          markdown-body: |
+            "-----------------------------"
+            {{ steps.updates.outputs }}
+          
