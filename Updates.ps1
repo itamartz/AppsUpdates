@@ -3,10 +3,7 @@ function Get-UpdateForAnsible{
     $LatesRelease = $AllReleases | Select -First 1
     $LatesVersion = $LatesRelease.tag_name.Substring(1)
     
-    return @{
-        AnsibleLatesVersion = $LatesVersion
-    }
-
+    return $LatesVersion
 }
 
 function  Get-UpdateForSplunk{
@@ -32,10 +29,9 @@ function  Get-UpdateForSplunk{
         Write-Error "Could not find x64 file"
     }
 
-    return @{
-        Splunk        = $x64_url
-    }
+    ($x64_filename -split '-')[1]
 }
 
-Get-UpdateForAnsible | Format-Table -auto
-Get-UpdateForSplunk | Format-Table -auto
+Set-Item -Path "env:Latest_Ansible" -Value $(Get-UpdateForAnsible) -Force
+Set-Item -Path "env:Latest_Splunk" -Value $(Get-UpdateForSplunk) -Force
+
