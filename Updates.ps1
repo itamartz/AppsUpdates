@@ -2,7 +2,10 @@ function Get-UpdateForAnsible{
     $AllReleases = Invoke-RestMethod -Uri 'https://api.github.com/repos/ansible/ansible/releases' -UseBasicParsing | Sort-Object tag_name 
     $LatesRelease = $AllReleases | Select -First 1
     $LatesVersion = $LatesRelease.tag_name.Substring(1)
-    $LatesVersion
+    
+    return @{
+        LatesVersion = $LatesVersion
+    }
 
 }
 
