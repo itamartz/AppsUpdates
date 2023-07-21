@@ -54,6 +54,7 @@ jobs:
           }
 
           $LatesVersion = ($x64_filename -split '-')[1]
+          echo "::set-output name=LatesSplunk::$($LatesVersion)
           echo "LatesSplunk=$($LatesVersion)" >> $env:GITHUB_ENV
 
       - name: Get Env
@@ -70,10 +71,8 @@ jobs:
           api-key: ${{ secrets.SENDGRID_TOKEN }}
           subject: Updates for Apps
           markdown-body: |
-            Splunk\
-            $env:LatesSplunk
-
-            ${{ steps.updates.outputs.stdout }}
+            Splunk - ${{ steps.splunk.outputs.stdout }}
+            ${{ steps.splunk.outputs.LatesSplunk }}
 
 
 
