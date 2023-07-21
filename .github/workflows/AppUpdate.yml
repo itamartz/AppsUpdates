@@ -18,7 +18,7 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
-      - name: Run Powershell Get Apps Updates Script
+      - name: Run Powershell Get Apps Updates Script - Ansible
         shell: pwsh
         id: ansible
         run: |
@@ -28,7 +28,7 @@ jobs:
           echo "::set-output name=LatesAnsible::$($LatesVersion)"
           echo "LatesAnsible=$($LatesVersion)" >> $env:GITHUB_ENV
 
-      - name: Run Powershell Get Apps Updates Script
+      - name: Run Powershell Get Apps Updates Script - Splunk
         shell: pwsh
         id: splunk
         run: |
