@@ -4,7 +4,7 @@ function Get-UpdateForAnsible{
     $LatesVersion = $LatesRelease.tag_name.Substring(1)
     
     return @{
-        LatesVersion = $LatesVersion
+        AnsibleLatesVersion = $LatesVersion
     }
 
 }
@@ -33,8 +33,7 @@ function  Get-UpdateForSplunk{
     }
 
     return @{
-        URL32        = $x86_url
-        URL64        = $x64_url
+        Splunk        = $x64_url
     }
 }
 
