@@ -61,6 +61,20 @@ jobs:
           echo "::set-output name=LatesSplunk::$($LatesVersion)"
           echo "LatesSplunk=$($LatesVersion)" >> $env:GITHUB_ENV
 
+      - name: Run Powershell Get Apps Updates Script - Powershell
+        shell: pwsh
+        id: powershell
+        run: |
+          $headers = @{
+            'User-Agent' = 'DarwinJS'
+          }
+
+          $releases = Invoke-RestMethod -Method Get -Uri 'https://api.github.com/repos/PowerShell/PowerShell/releases' -Headers $headers
+          $AllReleasesGroups =  $releases | Group-Object -Property { ($_.tag_name.Substring(1).Split(".", 3) | Select-Object -First 2) -join "." }
+          $LatesVersion = $AllReleasesGroups[0].name
+          echo "::set-output name=LatesPowershell::$($LatesVersion)"
+          echo "LatesPowershell=$($LatesVersion)" >> $env:GITHUB_ENV
+
       - name: Get Env
         shell: pwsh
         id: env
@@ -80,7 +94,6 @@ jobs:
 
             ### LatesAnsible
             ${{ steps.ansible.outputs.LatesAnsible }}
-          
 
-
-
+            ### LatesPowershell
+            ${{ steps.powershell.outputs.LatesPowershell }}
