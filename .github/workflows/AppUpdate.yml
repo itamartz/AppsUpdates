@@ -65,13 +65,10 @@ jobs:
         shell: pwsh
         id: powershell
         run: |
-          $headers = @{
-            'User-Agent' = 'DarwinJS'
-          }
 
-          $releases = Invoke-RestMethod -Method Get -Uri 'https://api.github.com/repos/PowerShell/PowerShell/releases' -Headers $headers
-          $AllReleasesGroups =  $releases | Group-Object -Property { ($_.tag_name.Substring(1).Split(".", 3) | Select-Object -First 2) -join "." }
-          $LatesVersion = $AllReleasesGroups[0].name
+          $releases = Invoke-RestMethod -Method Get -Uri 'https://api.github.com/repos/PowerShell/PowerShell/releases'
+          $latestag = $releases.tag_name | Select-Object -First 1
+          $LatesVersion = $latestag.Substring(1)
           echo "::set-output name=LatesPowershell::$($LatesVersion)"
           echo "LatesPowershell=$($LatesVersion)" >> $env:GITHUB_ENV
 
